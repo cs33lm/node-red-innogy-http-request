@@ -25,6 +25,8 @@ msg.url= "https://IP:Port";
 msg.method = "GET";
 return msg;
 ```
+### For Wallboxes with Firmware <2.6:
+
 2. function node (login):
 ```
 let cookie = msg.responseCookies.ecu_session.value;
@@ -65,6 +67,45 @@ msg.cookies = {
 }
 return msg;
 ```
+### For Wallboxes with Firmware >2.6:
+
+2. function node (login):
+```
+msg = {};
+msg.payload = {
+    username: "admin",
+    password: "password"
+}
+msg.headers = {
+    'Content-Type': 'application/x-www-form-urlencoded'
+}
+msg.url= "https://IP:Port/cgi_c_login";
+msg.method = "POST";
+return msg;
+```
+3. function node (submit LDP1-Remote Control):
+```
+let cookie = msg.redirectList[0].cookies.ecu_session.value;
+msg = {};
+msg.payload = {
+    "waittime": "0",
+    "chargetime": "0",
+    "contractID": "YOUR_RFID_HERE",
+    "rfid_uid": "YOUR_RFID_HERE",
+    "start_stop": "0",
+    "currentByContract": "50"
+}
+msg.headers = {
+    'Content-Type': 'application/x-www-form-urlencoded'
+}
+msg.url= "https://IP:Port/cgi_s_ldp1.remote_control";
+msg.method = "POST";
+msg.cookies = {
+    ecu_session: cookie
+}
+return msg;
+```
+
 4. add HTTP request nodes (method via msg.method, SSL without cert validation due to the self signed wallbox cert)
 
 ## Final result:
