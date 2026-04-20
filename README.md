@@ -12,6 +12,9 @@ Test with connected cable without card if manually submitted contract ID starts 
 
 Please check code below and change ip addresses and credentials according to your environment.
 
+You can find the firmware here: https://vaylens.atlassian.net/wiki/external/YWFhOGIzOGY3MDkxNDM1N2EyZGI3NTUxMGU5NzJiN2Y
+Please be careful if you run a very old firmware, as there are certain brick-conditions mentioned in the release notes.
+
 ## Limitations
 Please build your own your logic around when to trigger the authentication process. I grab the cable connected status via EVCC api and store globally if authentification was triggered. 
 
