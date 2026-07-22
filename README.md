@@ -28,7 +28,9 @@ msg.url= "https://IP:Port";
 msg.method = "GET";
 return msg;
 ```
-### For Wallboxes with Firmware <2.6:
+
+<details>
+<summary><h3>For Wallboxes with Firmware <2.6:</h3></summary>
 
 2. function node (login):
 ```
@@ -70,8 +72,11 @@ msg.cookies = {
 }
 return msg;
 ```
-### For Wallboxes with Firmware >2.6:
 
+</details>
+<details>
+<summary><h3>For Wallboxes with Firmware >2.6:</h3></summary>
+    
 2. function node (login):
 ```
 msg = {};
@@ -108,6 +113,7 @@ msg.cookies = {
 }
 return msg;
 ```
+</details>
 
 4. add HTTP request nodes (method via msg.method, SSL without cert validation due to the self signed wallbox cert)
 
